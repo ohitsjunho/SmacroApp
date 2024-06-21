@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isActive: Bool = false
+    
     var body: some View {
         
         ZStack {
@@ -28,7 +30,7 @@ struct ContentView: View {
                         .padding()
                     
                     Button(action: {
-                        inputData()
+                        isActive = true
                     }, label: {
                         Image("milk")
                             .resizable()
@@ -54,6 +56,11 @@ struct ContentView: View {
             .background(Rectangle()
                 .foregroundColor(.white).cornerRadius(10).shadow(radius: 15))
             .padding()
+            
+            if isActive {
+                InputProtein(isActive: $isActive, title: "Input Protein (g)", buttonTile: "Submit", action: {})
+                    
+            }
         }
         
         
