@@ -1,17 +1,11 @@
-//
-//  InputProtein.swift
-//  Smacro
-//
-//  Created by Jason Mauro on 6/21/24.
-//
+//General Class for inputting macros to the tracker
 
 import SwiftUI
 
-struct InputProtein: View{
+struct InputMacros: View{
     @Binding var isActive: Bool
     let title: String
     let buttonTile: String
-    let action: () -> ()
     @State private var offset: CGFloat = 1000
     
     
@@ -28,7 +22,7 @@ struct InputProtein: View{
             
             VStack(spacing : 0.1){
                 
-                Text(title)
+                Text("Input " + title + " (g)")
                     .font(.title)
                     .bold()
                     .padding()
@@ -37,7 +31,7 @@ struct InputProtein: View{
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.white)
                     
-                    TextField("Protein: ", text: $input)
+                    TextField(title, text: $input)
                         .padding()
                         .keyboardType(.decimalPad)
                         .background(.white)
@@ -49,6 +43,7 @@ struct InputProtein: View{
                 
                 
                 Button{
+                    updateMacros()
                     close()
                 } label: {
                     ZStack {
@@ -107,11 +102,15 @@ struct InputProtein: View{
         isActive = false;
     }
     
+    func updateMacros() {
+        //make the button parse the input and update the macros for the user
+    }
+    
 }
 
-struct InputProtein_Preivew: PreviewProvider{
+struct InputMacros_Preivew: PreviewProvider{
     static var previews: some View{
-        InputProtein(isActive: .constant(true), title: "Input Protein (g)", buttonTile: "Submit", action: {})
+        InputMacros(isActive: .constant(true), title: "Macros", buttonTile: "Submit")
     }
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isActive: Bool = false
+    @State private var macroType: String = ""
     
     var body: some View {
         
@@ -23,13 +24,18 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .padding()
                 HStack {
-                    Image("beef")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .padding()
                     
                     Button(action: {
+                        macroType = "Protein"
+                        isActive = true
+                    }, label: {
+                        Image("beef")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    })
+                    
+                    Button(action: {
+                        macroType = "Carbs"
                         isActive = true
                     }, label: {
                         Image("milk")
@@ -37,12 +43,14 @@ struct ContentView: View {
                             .aspectRatio(contentMode: .fit)
                     })
                     
-                    .foregroundColor(.black)
-                    Image("chickenbreast")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .padding()
+                    Button(action: {
+                        macroType = "Fats"
+                        isActive = true
+                    }, label: {
+                        Image("chickenbreast")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    })
                 }
                 Text("Macro Count")
                     .font(.title)
@@ -58,7 +66,7 @@ struct ContentView: View {
             .padding()
             
             if isActive {
-                InputProtein(isActive: $isActive, title: "Input Protein (g)", buttonTile: "Submit", action: {})
+                InputMacros(isActive: $isActive, title: macroType, buttonTile: "Submit")
                     
             }
         }

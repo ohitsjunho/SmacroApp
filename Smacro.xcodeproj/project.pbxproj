@@ -11,7 +11,7 @@
 		0111110E2C24A0FB005C9487 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111110D2C24A0FB005C9487 /* ContentView.swift */; };
 		011111102C24A0FD005C9487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0111110F2C24A0FD005C9487 /* Assets.xcassets */; };
 		011111132C24A0FD005C9487 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011111122C24A0FD005C9487 /* Preview Assets.xcassets */; };
-		FEDA653E2C2538CC00176675 /* InputProtein.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDA653D2C2538CC00176675 /* InputProtein.swift */; };
+		FEDA65422C25685700176675 /* InputMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDA65412C25685700176675 /* InputMacros.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,7 +20,7 @@
 		0111110D2C24A0FB005C9487 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0111110F2C24A0FD005C9487 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		011111122C24A0FD005C9487 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FEDA653D2C2538CC00176675 /* InputProtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputProtein.swift; sourceTree = "<group>"; };
+		FEDA65412C25685700176675 /* InputMacros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMacros.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +53,7 @@
 		0111110A2C24A0FB005C9487 /* Smacro */ = {
 			isa = PBXGroup;
 			children = (
-				FEDA653D2C2538CC00176675 /* InputProtein.swift */,
+				FEDA65412C25685700176675 /* InputMacros.swift */,
 				0111110B2C24A0FB005C9487 /* SmacroApp.swift */,
 				0111110D2C24A0FB005C9487 /* ContentView.swift */,
 				0111110F2C24A0FD005C9487 /* Assets.xcassets */,
@@ -141,8 +141,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0111110E2C24A0FB005C9487 /* ContentView.swift in Sources */,
+				FEDA65422C25685700176675 /* InputMacros.swift in Sources */,
 				0111110C2C24A0FB005C9487 /* SmacroApp.swift in Sources */,
-				FEDA653E2C2538CC00176675 /* InputProtein.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
