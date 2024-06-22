@@ -3,47 +3,38 @@
 import SwiftUI
 
 struct InputMacros: View{
+    
     @Binding var isActive: Bool
     let title: String
-    let buttonTile: String
     @State private var offset: CGFloat = 1000
-    
+    @State var input: String = ""
     
     var body: some View {
-        
-        
-        @State var input: String = ""
-        
         ZStack{
-            
             BlurView(style: .systemMaterial)
                 .ignoresSafeArea()
             
-            
-            VStack(spacing : 0.1){
+            VStack(spacing : 5){
                 
                 Text("Input " + title + " (g)")
                     .font(.title)
                     .bold()
-                    .padding()
                 
                 ZStack{
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.white)
                     
-                    TextField(title, text: $input)
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.gray)
+                    
+                    TextField("0.0", text: $input)
                         .padding()
                         .keyboardType(.decimalPad)
                         .background(.white)
                         .cornerRadius(10)
-                        
                     
-            
                 }.padding(6)
-                
-                
+            
                 Button{
-                    updateMacros()
+                    updateMacros(input: input)
                     close()
                 } label: {
                     ZStack {
@@ -55,20 +46,17 @@ struct InputMacros: View{
                             .foregroundColor(.white)
                             .padding()
                     }
-                    .padding()
-                    
                 }
                 
             }
             .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-            .padding()
+            .padding(20)
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .overlay {
                 VStack {
                     HStack {
                         Spacer()
-                        
                         Button {
                             close()
                         } label: {
@@ -102,15 +90,30 @@ struct InputMacros: View{
         isActive = false;
     }
     
-    func updateMacros() {
-        //make the button parse the input and update the macros for the user
+    func updateMacros(input: String) {
+        //Check if the value can be converted to a double
+        guard let inputValue = Double(input) else {
+            //Send an error and make them reinput
+            return
+        }
+
+        switch title {
+        case "Protein":
+            ContentView.Protein += inputValue
+        case "Fats":
+            ContentView.Fats += inputValue
+        case "Carbs":
+            ContentView.Carbs += inputValue
+        default:
+            break
+        }
     }
     
 }
 
 struct InputMacros_Preivew: PreviewProvider{
     static var previews: some View{
-        InputMacros(isActive: .constant(true), title: "Macros", buttonTile: "Submit")
+        InputMacros(isActive: .constant(true), title: "Macros")
     }
 }
 

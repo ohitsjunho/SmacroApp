@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isActive: Bool = false
+    @State var isActive: Bool = false
     @State private var macroType: String = ""
+    static public var Protein: Double = 0.0
+    static public var Carbs: Double = 0.0
+    static public var Fats: Double = 0.0
     
     var body: some View {
         
@@ -56,9 +59,9 @@ struct ContentView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text("Protein:")
-                Text("Carbohydrates:")
-                Text("Fats:")
+                Text("Protein: " + String(ContentView.Protein))
+                Text("Carbohydrates: " + String(ContentView.Carbs))
+                Text("Fats: " + String(ContentView.Fats))
             }
             .padding()
             .background(Rectangle()
@@ -66,8 +69,7 @@ struct ContentView: View {
             .padding()
             
             if isActive {
-                InputMacros(isActive: $isActive, title: macroType, buttonTile: "Submit")
-                    
+                InputMacros(isActive: $isActive, title: macroType)
             }
         }
         
