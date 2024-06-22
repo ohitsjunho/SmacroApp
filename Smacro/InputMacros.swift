@@ -7,12 +7,12 @@ struct InputMacros: View{
     let title: String
     let buttonTile: String
     @State private var offset: CGFloat = 1000
-    
-    
+    // @Binding var input: String
+    @State var newInput: String = ""
+    var onSubmit: (String) -> Void
     var body: some View {
         
         
-        @State var input: String = ""
         
         ZStack{
             
@@ -31,7 +31,7 @@ struct InputMacros: View{
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.white)
                     
-                    TextField(title, text: $input)
+                    TextField(title, text: $newInput) //Text Box for Inputting Macros
                         .padding()
                         .keyboardType(.decimalPad)
                         .background(.white)
@@ -103,17 +103,18 @@ struct InputMacros: View{
     }
     
     func updateMacros() {
-        //make the button parse the input and update the macros for the user
+        onSubmit(newInput)
+        newInput = ""
     }
     
 }
-
+/* Commented out as the parameters are not accepted during runtime
 struct InputMacros_Preivew: PreviewProvider{
     static var previews: some View{
-        InputMacros(isActive: .constant(true), title: "Macros", buttonTile: "Submit")
+        InputMacros(isActive: .constant(true), title: "Macros", buttonTile: "Submit", input: String)
     }
 }
-
+*/
 
 struct BlurView: UIViewRepresentable {
     let style: UIBlurEffect.Style

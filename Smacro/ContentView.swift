@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @State private var isActive: Bool = false
     @State private var macroType: String = ""
+    @State private var protein: String = "0"
+    @State private var carbohydrates: String = "0"
+    @State private var fats: String = "0"
     
     var body: some View {
         
@@ -18,47 +21,37 @@ struct ContentView: View {
                 .ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 5.0) {
-                Image("macropie")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(10)
-                    .padding()
                 HStack {
                     
                     Button(action: {
                         macroType = "Protein"
-                        isActive = true
+                        isActive = true 
                     }, label: {
-                        Image("beef")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                        Text("Protein")
+                            
                     })
                     
                     Button(action: {
-                        macroType = "Carbs"
+                        macroType = "Carbohydrates"
                         isActive = true
                     }, label: {
-                        Image("milk")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                        Text("Carbohydrates")
                     })
                     
                     Button(action: {
                         macroType = "Fats"
                         isActive = true
                     }, label: {
-                        Image("chickenbreast")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                        Text("Fats").padding(3)
                     })
                 }
                 Text("Macro Count")
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text("Protein:")
-                Text("Carbohydrates:")
-                Text("Fats:")
+                Text("Protein: \(protein)")
+                Text("Carbohydrates: \(carbohydrates)")
+                Text("Fats: \(fats)")
             }
             .padding()
             .background(Rectangle()
@@ -66,16 +59,33 @@ struct ContentView: View {
             .padding()
             
             if isActive {
-                InputMacros(isActive: $isActive, title: macroType, buttonTile: "Submit")
+                InputMacros(isActive: $isActive, title: macroType, buttonTile: "Submit", onSubmit: { newValue in accumulateMacro(newValue: newValue, for: macroType)})
                     
             }
         }
         
         
     }
-    
-    func inputData() {
-        print("s")
+
+    func accumulateMacro(newValue: String, for macroType: String) {
+        guard let newAmount = Double(newValue) else { return }
+        
+        switch macroType {
+        case "Protein":
+            if let currentAmount = Double(protein) {
+                protein = String(currentAmount + newAmount)
+            }
+        case "Carbohydrates":
+            if let currentAmount = Double(carbohydrates) {
+                carbohydrates = String(currentAmount + newAmount)
+            }
+        case "Fats":
+            if let currentAmount = Double(fats) {
+                fats = String(currentAmount + newAmount)
+            }
+        default:
+            break
+        }
     }
 }
 
